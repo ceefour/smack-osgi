@@ -1,0 +1,17 @@
+// ------------------------------------------------------------------
+// Transitive dependencies of this project determined from the
+// maven pom organized by organization.
+// ------------------------------------------------------------------
+
+Apache ServiceMix
+
+
+From: 'an unknown organization'
+  - Unnamed - org.igniterealtime.smack:smack:jar:3.1.0  org.igniterealtime.smack:smack:jar:3.1.0
+
+  - Unnamed - org.igniterealtime.smack:smackx:jar:3.1.0  org.igniterealtime.smack:smackx:jar:3.1.0
+
+
+
+
+

@@ -25,6 +25,11 @@ import org.jivesoftware.smack.packet.*;
 import org.jivesoftware.smack.provider.IQProvider;
 import org.jivesoftware.smack.provider.ProviderManager;
 import org.jivesoftware.smack.util.PacketParserUtils;
+<<<<<<< Updated upstream
+=======
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+>>>>>>> Stashed changes
 import org.xmlpull.mxp1.MXParser;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -57,6 +62,10 @@ class PacketReader {
 
     private String connectionID = null;
     private Semaphore connectionSemaphore;
+<<<<<<< Updated upstream
+=======
+	private Logger logger = LoggerFactory.getLogger(getClass());
+>>>>>>> Stashed changes
 
     protected PacketReader(final XMPPConnection connection) {
         this.connection = connection;
@@ -557,6 +566,11 @@ class PacketReader {
      * @throws Exception if an exception occurs while parsing the packet.
      */
     private IQ parseIQ(XmlPullParser parser) throws Exception {
+<<<<<<< Updated upstream
+=======
+    	logger.debug("parseIQ parsing: {}", parser.getText());
+    	
+>>>>>>> Stashed changes
         IQ iqPacket = null;
 
         String id = parser.getAttributeValue("", "id");
@@ -570,6 +584,11 @@ class PacketReader {
             int eventType = parser.next();
 
             if (eventType == XmlPullParser.START_TAG) {
+<<<<<<< Updated upstream
+=======
+            	logger.debug("parsing: {}", parser.getText());
+            	
+>>>>>>> Stashed changes
                 String elementName = parser.getName();
                 String namespace = parser.getNamespace();
                 if (elementName.equals("error")) {
@@ -612,6 +631,10 @@ class PacketReader {
         // Decide what to do when an IQ packet was not understood
         if (iqPacket == null) {
             if (IQ.Type.GET == type || IQ.Type.SET == type ) {
+<<<<<<< Updated upstream
+=======
+            	logger.error("IQ packet not implemented! {}", parser.getText());
+>>>>>>> Stashed changes
                 // If the IQ stanza is of type "get" or "set" containing a child element
                 // qualified by a namespace it does not understand, then answer an IQ of
                 // type "error" with code 501 ("feature-not-implemented")
@@ -630,6 +653,10 @@ class PacketReader {
             }
             else {
                 // If an IQ packet wasn't created above, create an empty IQ packet.
+<<<<<<< Updated upstream
+=======
+            	logger.error("Empty IQ packet! {}", parser.getText());
+>>>>>>> Stashed changes
                 iqPacket = new IQ() {
                     public String getChildElementXML() {
                         return null;

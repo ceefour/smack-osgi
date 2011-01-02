@@ -22,11 +22,8 @@ package org.jivesoftware.smack.provider;
 
 import org.jivesoftware.smack.packet.IQ;
 import org.jivesoftware.smack.packet.PacketExtension;
-<<<<<<< Updated upstream
-=======
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
->>>>>>> Stashed changes
 import org.xmlpull.mxp1.MXParser;
 import org.xmlpull.v1.XmlPullParser;
 
@@ -127,11 +124,8 @@ public class ProviderManager {
     private Map<String, Object> extensionProviders = new ConcurrentHashMap<String, Object>();
     private Map<String, Object> iqProviders = new ConcurrentHashMap<String, Object>();
 
-<<<<<<< Updated upstream
-=======
 	private Logger logger = LoggerFactory.getLogger(getClass());
 
->>>>>>> Stashed changes
     /**
      * Returns the only ProviderManager valid instance.  Use {@link #setInstance(ProviderManager)}
      * to configure your own provider manager. If non was provided then an instance of this
@@ -162,21 +156,14 @@ public class ProviderManager {
     }
 
     protected void initialize() {
-<<<<<<< Updated upstream
-=======
     	logger.debug("initialize ProviderManager");
->>>>>>> Stashed changes
         // Load IQ processing providers.
         try {
             // Get an array of class loaders to try loading the providers files from.
             ClassLoader[] classLoaders = getClassLoaders();
-<<<<<<< Updated upstream
-            for (ClassLoader classLoader : classLoaders) {
-=======
             logger.debug("Scanning {} classloaders...", classLoaders.length);
             for (ClassLoader classLoader : classLoaders) {
             	logger.debug("Scanning classloader: {}", classLoader);
->>>>>>> Stashed changes
                 Enumeration providerEnum = classLoader.getResources(
                         "META-INF/smack.providers");
                 while (providerEnum.hasMoreElements()) {
@@ -203,13 +190,10 @@ public class ProviderManager {
                                     // Only add the provider for the namespace if one isn't
                                     // already registered.
                                     String key = getProviderKey(elementName, namespace);
-<<<<<<< Updated upstream
-=======
                                     
                                     logger.debug("Got iqProvider: element={} namespace={} class={} key={} existing={}",
                                     		new Object[] { elementName, namespace, className, key, iqProviders.containsKey(key) }); 
                                     
->>>>>>> Stashed changes
                                     if (!iqProviders.containsKey(key)) {
                                         // Attempt to load the provider class and then create
                                         // a new instance if it's an IQProvider. Otherwise, if it's
@@ -243,13 +227,10 @@ public class ProviderManager {
                                     // Only add the provider for the namespace if one isn't
                                     // already registered.
                                     String key = getProviderKey(elementName, namespace);
-<<<<<<< Updated upstream
-=======
                                     
                                     logger.debug("Got extensionProvider: element={} namespace={} class={} key={} existing={}",
                                     		new Object[] { elementName, namespace, className, key, iqProviders.containsKey(key) }); 
                                     
->>>>>>> Stashed changes
                                     if (!extensionProviders.containsKey(key)) {
                                         // Attempt to load the provider class and then create
                                         // a new instance if it's a Provider. Otherwise, if it's
@@ -292,10 +273,7 @@ public class ProviderManager {
         catch (Exception e) {
             e.printStackTrace();
         }
-<<<<<<< Updated upstream
-=======
         logger.debug("IQ providers={} Extension providers={}", iqProviders.size(), extensionProviders.size());
->>>>>>> Stashed changes
     }
 
     /**

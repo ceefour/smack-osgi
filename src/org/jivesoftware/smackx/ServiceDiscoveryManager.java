@@ -30,11 +30,8 @@ import org.jivesoftware.smack.packet.XMPPError;
 import org.jivesoftware.smackx.packet.DiscoverInfo;
 import org.jivesoftware.smackx.packet.DiscoverItems;
 import org.jivesoftware.smackx.packet.DataForm;
-<<<<<<< Updated upstream
-=======
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
->>>>>>> Stashed changes
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -52,11 +49,8 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class ServiceDiscoveryManager {
 
-<<<<<<< Updated upstream
-=======
 	private static Logger logger = LoggerFactory.getLogger(ServiceDiscoveryManager.class);
 	
->>>>>>> Stashed changes
     private static String identityName = "Smack";
     private static String identityType = "pc";
 
@@ -70,17 +64,11 @@ public class ServiceDiscoveryManager {
             new ConcurrentHashMap<String, NodeInformationProvider>();
 
     // Create a new ServiceDiscoveryManager on every established connection
-<<<<<<< Updated upstream
-    static {
-        XMPPConnection.addConnectionCreationListener(new ConnectionCreationListener() {
-            public void connectionCreated(XMPPConnection connection) {
-=======
     public static void staticInit() {
     	logger.debug("Adding ConnectionCreationListener to XMPPConnection");
         XMPPConnection.addConnectionCreationListener(new ConnectionCreationListener() {
             public void connectionCreated(XMPPConnection connection) {
             	logger.debug("Instantiating a ServiceDiscoveryManager for {}", connection);
->>>>>>> Stashed changes
                 new ServiceDiscoveryManager(connection);
             }
         });
@@ -105,11 +93,8 @@ public class ServiceDiscoveryManager {
      * @return the ServiceDiscoveryManager associated with a given XMPPConnection.
      */
     public static ServiceDiscoveryManager getInstanceFor(XMPPConnection connection) {
-<<<<<<< Updated upstream
-=======
     	logger.debug("getInstanceFor: instances.size={} connectionID={} connection={}",
     			new Object[] {instances.size(), connection.getConnectionID(), connection});
->>>>>>> Stashed changes
         return instances.get(connection);
     }
 
@@ -164,17 +149,12 @@ public class ServiceDiscoveryManager {
      * service discovery request. 
      */
     private void init() {
-<<<<<<< Updated upstream
-        // Register the new instance and associate it with the connection 
-        instances.put(connection, this);
-=======
     	logger.debug("Register ServiceDiscoveryManager instance and associate it with {}",
     			connection);
         // Register the new instance and associate it with the connection 
         instances.put(connection, this);
         logger.debug("ServiceDiscoveryManager.instances now contains {} objects",
         		instances.size());
->>>>>>> Stashed changes
         // Add a listener to the connection that removes the registered instance when
         // the connection is closed
         connection.addConnectionListener(new ConnectionListener() {
@@ -504,11 +484,8 @@ public class ServiceDiscoveryManager {
      * @throws XMPPException if the operation failed for some reason.
      */
     public DiscoverItems discoverItems(String entityID, String node) throws XMPPException {
-<<<<<<< Updated upstream
-=======
     	logger.debug("discoverItems() entityID={} node={}",
     			entityID, node);
->>>>>>> Stashed changes
         // Discover the entity's items
         DiscoverItems disco = new DiscoverItems();
         disco.setType(IQ.Type.GET);
@@ -531,11 +508,8 @@ public class ServiceDiscoveryManager {
         if (result.getType() == IQ.Type.ERROR) {
             throw new XMPPException(result.getError());
         }
-<<<<<<< Updated upstream
-=======
         logger.debug("discoverItems: xmlns={}, id={} from={} to={} type={} child={}",
         		new Object[] {result.getXmlns(), result.getPacketID(), result.getFrom(), result.getTo(), result.getType(), result.getChildElementXML()} );
->>>>>>> Stashed changes
         return (DiscoverItems) result;
     }
 

@@ -26,12 +26,9 @@ import org.jivesoftware.smack.packet.Packet;
 import org.jivesoftware.smack.packet.Presence;
 import org.jivesoftware.smack.packet.XMPPError;
 import org.jivesoftware.smack.util.StringUtils;
-<<<<<<< Updated upstream
-=======
 import org.jivesoftware.smackx.ServiceDiscoveryManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
->>>>>>> Stashed changes
 
 import javax.net.ssl.KeyManager;
 import javax.net.ssl.KeyManagerFactory;
@@ -88,11 +85,8 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class XMPPConnection {
 
-<<<<<<< Updated upstream
-=======
 	private static Logger logger = LoggerFactory.getLogger(XMPPConnection.class);
 	
->>>>>>> Stashed changes
     /**
      * Value that indicates whether debugging is enabled. When enabled, a debug
      * window will apear for each new connection that will contain the following
@@ -127,17 +121,12 @@ public class XMPPConnection {
         catch (Exception e) {
             // Ignore.
         }
-<<<<<<< Updated upstream
-        // Ensure the SmackConfiguration class is loaded by calling a method in it.
-        SmackConfiguration.getVersion();
-=======
         logger.debug("smack.debugEnabled = {}", DEBUG_ENABLED);
         // Ensure the SmackConfiguration class is loaded by calling a method in it.
         SmackConfiguration.getVersion();
         
         // OSGi/Equinox/Eclipse workaround: make sure the static runs
         ServiceDiscoveryManager.staticInit();
->>>>>>> Stashed changes
     }
 
     private SmackDebugger debugger = null;
@@ -229,12 +218,9 @@ public class XMPPConnection {
         config.setDebuggerEnabled(DEBUG_ENABLED);
         this.configuration = config;
         this.callbackHandler = callbackHandler;
-<<<<<<< Updated upstream
-=======
 
         logger.debug("XMPPConnection created. serviceName: {} callbackHandler: {} config: {}",
         		new Object[] { serviceName, callbackHandler, config });
->>>>>>> Stashed changes
     }
 
     /**
@@ -253,12 +239,9 @@ public class XMPPConnection {
         config.setDebuggerEnabled(DEBUG_ENABLED);
         this.configuration = config;
         this.callbackHandler = null;
-<<<<<<< Updated upstream
-=======
 
         logger.debug("XMPPConnection created. serviceName: {} callbackHandler: {} config: {}",
         		new Object[] { serviceName, callbackHandler, config });
->>>>>>> Stashed changes
     }
 
     /**
@@ -897,10 +880,7 @@ public class XMPPConnection {
     public static void addConnectionCreationListener(
             ConnectionCreationListener connectionCreationListener) {
         connectionEstablishedListeners.add(connectionCreationListener);
-<<<<<<< Updated upstream
-=======
         logger.debug("ConnectionCreationListener added: {}", connectionCreationListener);
->>>>>>> Stashed changes
     }
 
     /**
@@ -989,11 +969,8 @@ public class XMPPConnection {
 
             if (isFirstInitialization) {
                 // Notify listeners that a new connection has been established
-<<<<<<< Updated upstream
-=======
             	logger.debug("Notifying ConnectionCreationListener: {} listeners",
             			connectionEstablishedListeners);
->>>>>>> Stashed changes
                 for (ConnectionCreationListener listener : connectionEstablishedListeners) {
                     listener.connectionCreated(this);
                 }
